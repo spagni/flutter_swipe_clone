@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import '../images_source.dart';
+import './photo_browser.dart';
 class ProfileCard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => ProfileCardState();
@@ -25,27 +26,51 @@ class ProfileCardState extends State<ProfileCard> {
           child: Stack(
             fit: StackFit.expand,
             children: <Widget>[
-              Image.network('https://instagram.faep9-1.fna.fbcdn.net/vp/a4469a5e6f4617e425210ad220326e12/5BE233CD/t51.2885-15/e35/36653594_243045059636517_8492191835106574336_n.jpg', 
-              fit: BoxFit.cover),
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.transparent,
-                      Colors.black.withOpacity(0.5)
-                    ]
-                  )
-                ),
-                padding: EdgeInsets.all(24.0),
-                child: Row(
-
-                ),
-              )
+              PhotoBrowser(
+                photoList: ImagesSource.getImages(),
+                visiblePhotoIndex: 3
+              ),
+              _buildProfileSynopsis()
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildProfileSynopsis() {
+    return Positioned(
+      bottom: 0.0,
+      left: 0.0,
+      right: 0.0,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.transparent,
+              Colors.black.withOpacity(0.8)
+            ]
+          )
+        ),
+        padding: EdgeInsets.all(24.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text('Sebastian Pagni', style: TextStyle(color: Colors.white, fontSize: 24.0)),
+                  Text('Description', style: TextStyle(color: Colors.white, fontSize: 18.0)),
+                ],
+              ),
+            ),
+            Icon(Icons.info, color: Colors.white,)
+          ],
+        )
       ),
     );
   }
