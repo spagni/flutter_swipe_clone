@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../images_source.dart';
 import './photo_browser.dart';
+
 class ProfileCard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => ProfileCardState();
@@ -28,7 +29,7 @@ class ProfileCardState extends State<ProfileCard> {
             children: <Widget>[
               PhotoBrowser(
                 photoList: ImagesSource.getImages(),
-                visiblePhotoIndex: 3
+                visiblePhotoIndex: 0
               ),
               _buildProfileSynopsis()
             ],

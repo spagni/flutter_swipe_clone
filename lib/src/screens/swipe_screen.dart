@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/round_icon_button.dart';
-import 'package:fluttery/layout.dart';
-import '../widgets/profile_card.dart';
+import '../widgets/draggable_card.dart';
 
 class SwipeScreen extends StatelessWidget {
   @override
@@ -9,7 +8,7 @@ class SwipeScreen extends StatelessWidget {
     return Scaffold(
       appBar: _buildAppBar(),
       backgroundColor: Colors.grey[200],
-      body: _buildCardStack(),
+      body: DraggableCard(),
       bottomNavigationBar: _buildBottomBar(),
     );
   }
@@ -82,24 +81,6 @@ class SwipeScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildCardStack() {
-    return AnchoredOverlay(
-      showOverlay: true,
-      child: Center(),
-      overlayBuilder: (BuildContext context, Rect anchorBounds, Offset anchor) {
-        return CenterAbout(
-          position: anchor,
-          child: Container(
-            width: anchorBounds.width,
-            height: anchorBounds.height,
-            padding: EdgeInsets.all(16.0),
-            child: ProfileCard(),
-          ),
-        );
-      },
     );
   }
 }
